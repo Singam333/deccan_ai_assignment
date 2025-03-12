@@ -27,7 +27,7 @@ def verify_password(username, password):
     return None
 
 # Load the trained model
-MODEL_PATH = os.environ.get('MODEL_PATH', 'models/cifar10_mobilenet_final')
+MODEL_PATH = os.environ.get('MODEL_PATH', 'cifar10_mobilenet_final.h5')
 model = tf.keras.models.load_model(MODEL_PATH)
 
 # Class names for CIFAR-10
