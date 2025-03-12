@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Create directory for model if it doesn't exist
-RUN mkdir -p models
+# RUN mkdir -p models
 
 # Set environment variables
 ENV MODEL_PATH=cifar10_mobilenet_final.h5
