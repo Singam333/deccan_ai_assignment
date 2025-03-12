@@ -1,29 +1,27 @@
 import numpy as np
 import tensorflow as tf
-import matplotlib.pyplot as plt
-import seaborn as sns
 import pickle
-import flask
 import io
 from flask import Flask, request, jsonify
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
-from sklearn.metrics import classification_report, confusion_matrix
-import cv2
 
 # Load class names
 class_names = ['airplane', 'automobile', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck']
 
 # Load trained model
-with open(r"C:\Users\prade\Downloads\flask_app\image_classification_model.pkl", "rb") as f:
+with open("image_classification_model.pkl", "rb") as f:
     model = pickle.load(f)
 
 # Initialize Flask app
 app = Flask(__name__)
 
 # Basic authentication
+USERNAME = "admin"
+PASSWORD = "password"
+
 def check_auth(username, password):
-    return username == "admin" and password == "password"
+    return username == USERNAME and password == PASSWORD
 
 def authenticate():
     return jsonify({"message": "Authentication required"}), 401
@@ -53,6 +51,4 @@ def predict():
     return jsonify({"class": predicted_class, "confidence": confidence})
 
 if __name__ == '__main__':
-    app.run(debug=True)
-
-
+    app.run(host='0.0.0.0', port=5000, debug=True)
