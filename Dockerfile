@@ -1,17 +1,27 @@
-# Use a lightweight Python image
-FROM python:3.8-slim
+# Use the official TensorFlow image as the base image
+FROM tensorflow/tensorflow:2.13.0
 
 # Set the working directory
 WORKDIR /app
 
-# Copy all files
-COPY . /app
+# Copy the requirements file
+COPY requirements.txt .
 
-# Install dependencies
+# Install the dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose port 5000 for Flask
-EXPOSE 5000
+# Copy the rest of the application
+COPY . .
 
-# Start the Flask app
-CMD ["python", "app.py"]
+# Create directory for model if it doesn't exist
+RUN mkdir -p models
+
+# Set environment variables
+ENV MODEL_PATH=models/cifar10_mobilenet_final
+ENV PORT=10000
+
+# Expose the port
+EXPOSE 10000
+
+# Command to run the application
+CMD gunicorn --bind 0.0.0.0:$PORT app:app
