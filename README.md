@@ -9,7 +9,16 @@ It includes implementations in:
 
 ## API Link
 
-(https://image-classfication-assignment.onrender.com/predict)
+(https://image-classfication-assignment.onrender.com)
+
+## Project Features:
+- **Home Page (/):** Displays model information
+  
+-**Health Check (/health):** Shows the status of the API
+
+-**Prediction (/predict):** Requires username (admin), password(password123), and an image upload, then returns:
+Probability & confidence scores of all classes, 
+Predicted class & label
 
 ## Project Structure
 ```bash
@@ -24,11 +33,14 @@ Deccan_ai_assignment/
 │   ├── app.py              # Streamlit UI for predictions
 │   ├── requirements.txt    # Dependencies for Streamlit app
 │
-│── cifar10_mobilenet_final.h5   # Model saved outside for easy access
+│── cifar10_mobilenet_final.h5  #trained model
 │
-│── code.ipynb               # Notebook for training & testing
+│── code.ipynb/               # Notebook for training & testing       
 │
+│── Dockerfile              # Docker setup for deployment
 │── README.md               # Documentation
+│── report.docx              # Document to explain the project
+
 
 ```
 
@@ -68,6 +80,14 @@ The Flask app will be available at:(http://127.0.0.1:5000/)
 streamlit run app.py
 ```
 The Streamlit app will be available at:(http://localhost:8501/)
+
+## Docker deployment on Render
+
+Build and run docker locally 
+```bash
+docker build -t image-classification .
+docker run -p 5000:5000 image-classification
+```
 
 ## NOTE: 
 Ensure the cifar10_mobilenet_final.h5 (model) path is given in the flask and streamlit apps correctly before running them.
