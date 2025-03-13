@@ -7,6 +7,10 @@ It includes implementations in:
 - **Streamlit** (Interactive UI)
 - **Jupyter Notebook** (`.ipynb`) for training & testing the model.
 
+## API Link
+
+(https://image-classfication-assignment.onrender.com/predict)
+
 ## Project Structure
 ```bash
 Deccan_ai_assignment/
